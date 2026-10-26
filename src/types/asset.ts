@@ -8,7 +8,7 @@ export interface BaseAsset {
   date: string;
   isFeatured?: boolean;
   isTrending?: boolean;
-  hasAccess: boolean; 
+  hasAccess: boolean;
 }
 
 export interface KPIAsset extends BaseAsset {

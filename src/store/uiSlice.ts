@@ -67,13 +67,13 @@ const uiSlice = createSlice({
   },
 });
 
-export const { 
-  openModal, 
-  closeModal, 
-  openGlobalRequestModal, 
-  closeGlobalRequestModal, 
-  setSearchQuery, 
-  setActiveTab 
+export const {
+  openModal,
+  closeModal,
+  openGlobalRequestModal,
+  closeGlobalRequestModal,
+  setSearchQuery,
+  setActiveTab,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;
