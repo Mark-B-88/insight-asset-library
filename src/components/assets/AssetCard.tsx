@@ -1,4 +1,10 @@
-export function AssetCard() {
+import { Asset } from "@/types/asset";
+
+interface AssetCardProps {
+  asset: Asset;
+}
+
+export function AssetCard({ asset }: AssetCardProps) {
   return (
     <div className="flex items-start p-4 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors cursor-pointer bg-slate-50/50">
       <div className="flex-shrink-0 mr-4 mt-1 bg-white border border-slate-200 p-2 rounded-md">
@@ -8,11 +14,11 @@ export function AssetCard() {
         </svg>
       </div>
       <div>
-        <h3 className="text-sm font-semibold text-slate-900 mb-1">Item Name</h3>
+        <h3 className="text-sm font-semibold text-slate-900 mb-1">{asset.name}</h3>
         <p className="text-xs text-slate-500 line-clamp-2 mb-2">
-          Short description of the item goes nicely here.
+          {asset.description}
         </p>
-        <span className="text-[10px] text-slate-400">06/27/2024</span>
+        <span className="text-[10px] text-slate-400">{asset.date}</span>
       </div>
     </div>
   );

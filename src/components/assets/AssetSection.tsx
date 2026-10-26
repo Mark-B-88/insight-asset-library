@@ -1,11 +1,15 @@
 import { AssetCard } from "./AssetCard";
+import { Asset } from "@/types/asset";
 
 interface AssetSectionProps {
   title: string;
   subtitle: string;
+  assets: Asset[];
 }
 
-export function AssetSection({ title, subtitle }: AssetSectionProps) {
+export function AssetSection({ title, subtitle, assets }: AssetSectionProps) {
+  if (assets.length === 0) return null;
+
   return (
     <section className="mb-12 last:mb-0">
       <div className="mb-6">
@@ -13,10 +17,9 @@ export function AssetSection({ title, subtitle }: AssetSectionProps) {
         <p className="text-sm text-slate-500">{subtitle}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <AssetCard />
-        <AssetCard />
-        <AssetCard />
-        <AssetCard />
+        {assets.map((asset) => (
+          <AssetCard key={asset.id} asset={asset} />
+        ))}
       </div>
     </section>
   );
