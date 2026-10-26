@@ -1,0 +1,20 @@
+# Dependencies & Build Output
+node_modules
+.next
+out
+dist
+build
+
+# Lockfiles and system configurations
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.env*
+
+# Static asset outputs
+public/
+
+# Logs
+logs
+*.log
+npm-debug.log*
