@@ -1,7 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Asset } from '@/types/asset';
 
+export const fetchAssets = createAsyncThunk('ui/fetchAssets', async () => {
+  const response = await fetch('/api/assets');
+  if (!response.ok) throw new Error('Failed to fetch assets');
+  return (await response.json()) as Asset[];
+});
+
 interface UiState {
+  assets: Asset[];
+  isLoading: boolean;
   selectedAsset: Asset | null;
   isModalOpen: boolean;
   isGlobalRequestModalOpen: boolean;
@@ -10,6 +18,8 @@ interface UiState {
 }
 
 const initialState: UiState = {
+  assets: [],
+  isLoading: true,
   selectedAsset: null,
   isModalOpen: false,
   isGlobalRequestModalOpen: false,
@@ -41,6 +51,19 @@ const uiSlice = createSlice({
     setActiveTab: (state, action: PayloadAction<string>) => {
       state.activeTab = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAssets.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAssets.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.assets = action.payload;
+      })
+      .addCase(fetchAssets.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 
