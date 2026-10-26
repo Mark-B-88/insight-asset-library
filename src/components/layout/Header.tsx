@@ -1,4 +1,11 @@
+"use client";
+
+import { useDispatch } from "react-redux";
+import { openGlobalRequestModal } from "@/store/uiSlice";
+
 export function Header() {
+  const dispatch = useDispatch();
+
   return (
     <header className="flex justify-between items-start mb-8">
       <div className="text-center w-full relative">
@@ -6,7 +13,10 @@ export function Header() {
         <p className="text-slate-500 text-sm">
           Browse for assets needed to report and present analysis.
         </p>
-        <button className="absolute top-0 right-0 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors">
+        <button 
+          onClick={() => dispatch(openGlobalRequestModal())}
+          className="absolute top-0 right-0 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors shadow-sm"
+        >
           + Request
         </button>
       </div>

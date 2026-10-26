@@ -4,6 +4,7 @@ import { Asset } from '@/types/asset';
 interface UiState {
   selectedAsset: Asset | null;
   isModalOpen: boolean;
+  isGlobalRequestModalOpen: boolean;
   searchQuery: string;
   activeTab: string;
 }
@@ -11,6 +12,7 @@ interface UiState {
 const initialState: UiState = {
   selectedAsset: null,
   isModalOpen: false,
+  isGlobalRequestModalOpen: false,
   searchQuery: '',
   activeTab: 'Featured',
 };
@@ -27,6 +29,12 @@ const uiSlice = createSlice({
       state.selectedAsset = null;
       state.isModalOpen = false;
     },
+    openGlobalRequestModal: (state) => {
+      state.isGlobalRequestModalOpen = true;
+    },
+    closeGlobalRequestModal: (state) => {
+      state.isGlobalRequestModalOpen = false;
+    },
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
@@ -36,5 +44,13 @@ const uiSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, setSearchQuery, setActiveTab } = uiSlice.actions;
+export const { 
+  openModal, 
+  closeModal, 
+  openGlobalRequestModal, 
+  closeGlobalRequestModal, 
+  setSearchQuery, 
+  setActiveTab 
+} = uiSlice.actions;
+
 export default uiSlice.reducer;
