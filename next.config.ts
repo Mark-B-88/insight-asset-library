@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  allowedDevOrigins: ["43lmwy-3000.csb.app"],
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
